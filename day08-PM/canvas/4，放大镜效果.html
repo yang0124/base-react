@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color:#6677dd;
+            display: none;
+        }
+        .cont{
+            width: 288px;
+            height: 180px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .cont img{
+            width: 100%;
+            height: 100%;
+        }
+        .box{
+            width: 40px;
+            height: 40px;
+            background-color: rgba(88,99,200,0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <img src="img.jpg" alt="">
+        <div class="box"></div>
+    </div>
+    <canvas width="200" height="200"></canvas>
+</body>
+<script>
+    var oC = document.querySelector('canvas')
+    var context = oC.getContext('2d')
+    var oCont = document.querySelector('.cont')
+    var oBox = document.querySelector('.box')
+
+    var oImg = new Image();
+    oImg.src = 'img.jpg'
+    oImg.onload = function(){
+        oCont.onmouseover= function(ev){
+            var beginX = ev.clientX - oCont.offsetLeft;
+            var beginY = ev.clientY - oCont.offsetTop;
+            oC.style.display = 'inline-block'
+            oCont.onmousemove = function(ev){
+                var X = ev.clientX - oCont.offsetLeft;
+                var Y = ev.clientY - oCont.offsetTop;
+                oBox.setAttribute('style',`top:${Y-20}px;left:${X-20}px;`)
+                context.drawImage(oImg,(X-20)*10,(Y-20)*10,400,400,0,0,200,200)
+            }
+            oCont.onmouseout = function(){
+                oCont.onmousemove = null
+                oBox.style.display = 'none'
+                oC.style.display = 'none'
+            }
+        }
+
+    }
+
+    </script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="myRedux.js"></script>
+</head>
+<body>
+    <div>
+        <button>+</button>
+        <span>10</span>
+        <button>-</button>
+    </div>
+</body>
+<script>
+    var reducer = function(state = 1,action){ //为store状态机服务的一个功能函数
+        switch (action.type) {
+            case 'increment':
+                console.log(state)
+                state+=1
+                return state
+                break;
+            case 'decrement':
+                state-=1
+                return state
+                break;
+            default:
+                // console.log('reducer初始化',state)
+                return state
+                break;
+        }
+    }
+
+    var store = createStore(reducer) //创建状态机
+
+    function myRender(){ //获取状态机提供的数据并渲染至view
+        document.querySelector('span').innerHTML = store.getState()
+    } 
+    myRender()
+
+    store.subscribe(()=>{ //订阅store状态机中的数据变化，触发内部回调函数
+        console.log('监听到了store中的数据变化')
+        myRender()
+    })
+
+    var aBtn = document.querySelectorAll('button')
+    aBtn[0].onclick = function(){
+        store.dispatch({  //view视图，派发一个action给store状态机
+            type:'increment'
+        })
+    }
+
+    aBtn[1].onclick = function(){
+        store.dispatch({  //view视图，派发一个action给store状态机
+            type:'decrement'
+        })
+    }
+</script>
+</html>

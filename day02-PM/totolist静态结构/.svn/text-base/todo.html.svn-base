@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="main.css" />
+	</head> 
+
+	<body>
+		<div class="cont" id="root">
+			<header class="header">
+				<h1>Todos</h1>
+				<!--{/* 输入框 */}-->
+				<input type="text" class="new-todo" placeholder="请输入待办事项~" />
+			</header>
+
+			<section class="main">
+				<!--{/* 全选按钮 */}-->
+				<input type="checkbox" class="toggle-all" />
+				<ul class="todo-list">
+					<!--<li class="editing">-->
+					<li class="completed">
+						<div class="view">
+							<!--{/* 勾选按钮 */}-->
+							<input type="checkbox" class="toggle" />
+							<!--{/* todo 的内容 */}-->
+							<label>我是 todo 内容</label>
+							<!--{/* 删除按钮 */}-->
+							<button class="destroy"></button>
+						</div>
+						<input type="text" class="edit" />
+					</li>
+				</ul>
+			</section>
+
+			<footer class="footer">
+				<span class="todo-count">
+            <strong> 8 </strong>
+            <span>item left</span>
+				</span>
+				<ul class="filters">
+					<li>
+						<a class="selected">All</a>
+
+					</li>
+					<li>
+						<a class="selected">Active</a>
+
+					</li>
+					<li>
+						<a>Completed</a>
+
+					</li>
+				</ul>
+
+				<button class="clear-completed">
+            clear all completed
+          </button>
+			</footer>
+
+		</div>
+	</body>
+
+</html>

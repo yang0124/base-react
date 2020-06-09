@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color:#6677dd;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="400" height="400"></canvas>
+</body>
+<script>
+    var oC = document.querySelector('canvas')
+    var context = oC.getContext('2d')
+    var oImg = new Image();
+    oImg.src = 'img.jpg'
+    oImg.onload = function(){
+        context.drawImage(oImg,1170,660,110,110,0,0,400,400)
+        // [drawImage的方法](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage)
+    }
+</script>
+</html>

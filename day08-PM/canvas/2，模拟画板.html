@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        canvas{
+            background-color:#6677dd;
+            
+        }
+    </style>
+</head>
+<body>
+    <button>清除</button>
+    <canvas width="400" height="400"></canvas>
+</body>
+<script>
+
+    // 橡皮擦功能： clearRect(0,0,50,50)
+
+    var oC = document.querySelector('canvas')
+    var context = oC.getContext('2d')
+
+    oC.onmousedown = function(ev){
+        var beginX = ev.clientX - oC.offsetLeft;
+        var beginY = ev.clientY - oC.offsetTop;
+        context.moveTo(beginX,beginY)
+        oC.onmousemove = function(ev){
+            var X = ev.clientX - oC.offsetLeft;
+            var Y = ev.clientY - oC.offsetTop;
+            context.lineTo(X,Y);
+            context.stroke()
+        }
+        oC.onmouseup = function(){
+            oC.onmousemove = null
+        }
+    }
+
+    document.querySelector('button').onclick = function(){
+        context.clearRect(150,150,100,100)
+    }
+</script>
+</html>
